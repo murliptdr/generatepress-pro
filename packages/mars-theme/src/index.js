@@ -8,16 +8,25 @@ const newHandler = {
   pattern: "/(.*)?/:slug", 
   func: async ({ route, params, state, libraries }) => {
     // 1. try with category.
+    console.log(route)
     try {
+      if(route.includes("/author/")){
+        const author = libraries.source.handlers.find(
+          handler => handler.name == "author"
+        );
+        await author.func({ route, params, state, libraries });
+      }else{
       const category = libraries.source.handlers.find(
         handler => handler.name == "category"
       );
       await category.func({ route, params, state, libraries });
-    } catch (e) {
+    }
+   } catch (e) {
       // It's not a category
       const postType = libraries.source.handlers.find(
         handler => handler.name == "post type"
       );
+      
       await postType.func({ link: route, params, state, libraries });
     }
   }

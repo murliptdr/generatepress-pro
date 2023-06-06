@@ -2,7 +2,7 @@ const settings = {
   "name": "generatepress-pro",
   "state": {
     "frontity": {
-      "url": "https://graphicux/",
+      "url": "https://tasksource.net/",
       "title": "Test Frontity Blog",
       "description": "WordPress installation for Frontity development"
     }

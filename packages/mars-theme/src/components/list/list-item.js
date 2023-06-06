@@ -16,7 +16,7 @@ const Item = ({ state, item }) => {
 
   return (
       <ListSection>
-          <ContentItem>
+         
           <article>
       <BoxMain>
         <div>
@@ -59,13 +59,7 @@ const Item = ({ state, item }) => {
         </div>
       </BoxMain>
     </article>
-          </ContentItem>
-
-    <SideBarMain>
-      <div>
-
-      </div>
-    </SideBarMain>
+          
       </ListSection>
   );
 };
