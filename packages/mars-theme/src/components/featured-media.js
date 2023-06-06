@@ -27,7 +27,7 @@ const FeaturedMedia = ({ state, id }) => {
           ),
         ""
       ) || null;
-
+console.log(media)
   return (
     <Container isAmp={state.frontity.mode === "amp"}>
       <StyledImage
@@ -45,7 +45,8 @@ export default connect(FeaturedMedia);
 
 const Container = styled.div`
   margin-top: 16px;
-  height: 300px;
+  margin-right: 16px;
+  height: 270px;
   ${({ isAmp }) => isAmp && "position: relative;"};
 `;
 

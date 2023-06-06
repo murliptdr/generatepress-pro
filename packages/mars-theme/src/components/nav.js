@@ -36,6 +36,7 @@ const NavContainer = styled.nav`
   padding: 0 24px;
   margin: 0;
   overflow-x: auto;
+  justify-content: flex-end;
 
   @media screen and (max-width: 560px) {
     display: none;
@@ -43,21 +44,23 @@ const NavContainer = styled.nav`
 `;
 
 const NavItem = styled.div`
-  padding: 0;
-  margin: 0 16px;
+  padding: 0px;
+  margin: 0 0px;
   color: #fff;
-  font-size: 0.9em;
+  font-size: 16px;
+  
   box-sizing: border-box;
   flex-shrink: 0;
 
   & > a {
     display: inline-block;
     line-height: 2em;
+    padding: 15.5px 20px;
     border-bottom: 2px solid;
     border-bottom-color: transparent;
     /* Use for semantic approach to style the current link */
     &[aria-current="page"] {
-      border-bottom-color: #fff;
+      background: #35343a;
     }
   }
 

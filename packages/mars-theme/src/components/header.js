@@ -7,13 +7,17 @@ const Header = ({ state }) => {
   return (
     <>
       <Container>
+        <MainHeader>
         <StyledLink link="/">
           <Title>{state.frontity.title}</Title>
         </StyledLink>
-        <Description>{state.frontity.description}</Description>
+        {/* <Description>{state.frontity.description}</Description> */}
+      
+        <Nav />
+        </MainHeader>
         <MobileMenu />
       </Container>
-      <Nav />
+  
     </>
   );
 };
@@ -21,11 +25,24 @@ const Header = ({ state }) => {
 // Connect the Header component to get access to the `state` in it's `props`
 export default connect(Header);
 
+
+const MainHeader = styled.div`
+
+    padding: 0px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    @media (max-width: 560px) {
+      padding: 20px 15px;
+    }
+
+`;
+
 const Container = styled.div`
-  width: 848px;
+  width: 1250px;
   max-width: 100%;
   box-sizing: border-box;
-  padding: 24px;
+  padding: 0;
   color: #fff;
   display: flex;
   flex-direction: column;
@@ -34,7 +51,7 @@ const Container = styled.div`
 
 const Title = styled.h2`
   margin: 0;
-  margin-bottom: 16px;
+  margin-bottom: 0px;
 `;
 
 const Description = styled.h4`

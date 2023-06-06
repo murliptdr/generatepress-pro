@@ -2,7 +2,26 @@ import Theme from "./components";
 import image from "@frontity/html2react/processors/image";
 import iframe from "@frontity/html2react/processors/iframe";
 import link from "@frontity/html2react/processors/link";
-
+const newHandler = {
+  name: "categoryOrPostType",
+  priority: 19,
+  pattern: "/(.*)?/:slug", 
+  func: async ({ route, params, state, libraries }) => {
+    // 1. try with category.
+    try {
+      const category = libraries.source.handlers.find(
+        handler => handler.name == "category"
+      );
+      await category.func({ route, params, state, libraries });
+    } catch (e) {
+      // It's not a category
+      const postType = libraries.source.handlers.find(
+        handler => handler.name == "post type"
+      );
+      await postType.func({ link: route, params, state, libraries });
+    }
+  }
+};
 const marsTheme = {
   name: "@frontity/mars-theme",
   roots: {
@@ -43,6 +62,9 @@ const marsTheme = {
     },
   },
   libraries: {
+    source: {
+      handlers: [newHandler]
+    },
     html2react: {
       /**
        * Add a processor to `html2react` so it processes the `<img>` tags

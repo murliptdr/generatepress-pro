@@ -2,7 +2,7 @@ const settings = {
   "name": "generatepress-pro",
   "state": {
     "frontity": {
-      "url": "https://graphicux.com",
+      "url": "https://graphicux/",
       "title": "Test Frontity Blog",
       "description": "WordPress installation for Frontity development"
     }
@@ -18,24 +18,24 @@ const settings = {
               "/"
             ],
             [
-              "Nature",
-              "/category/nature/"
+              "About",
+              "/about-us/"
             ],
             [
-              "Travel",
+              "Best Deals",
               "/category/travel/"
             ],
             [
-              "Japan",
+              "Tools",
               "/tag/japan/"
             ],
             [
-              "About Us",
-              "/about-us/"
+              "Contact",
+              "/contact"
             ]
           ],
           "featured": {
-            "showOnList": false,
+            "showOnList": true,
             "showOnPost": false
           }
         }
@@ -45,8 +45,8 @@ const settings = {
       "name": "@frontity/wp-source",
       "state": {
         "source": {
-          "url": "https://graphicux.com"
-        }
+          "url": "https://tasksource.net/"
+                }
       }
     },
     "@frontity/tiny-router",
