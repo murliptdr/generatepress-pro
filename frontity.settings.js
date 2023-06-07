@@ -2,7 +2,7 @@ const settings = {
   "name": "generatepress-pro",
   "state": {
     "frontity": {
-      "url": "https://tasksource.net/",
+      "url": "https://gpsites.co/marketer",
       "title": "Test Frontity Blog",
       "description": "WordPress installation for Frontity development"
     }
@@ -36,7 +36,7 @@ const settings = {
           ],
           "featured": {
             "showOnList": true,
-            "showOnPost": false
+            "showOnPost": true
           }
         }
       }
@@ -45,7 +45,7 @@ const settings = {
       "name": "@frontity/wp-source",
       "state": {
         "source": {
-          "url": "https://tasksource.net/"
+          "url": "https://gpsites.co/marketer"
                 }
       }
     },

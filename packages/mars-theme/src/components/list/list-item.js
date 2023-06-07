@@ -15,52 +15,53 @@ const Item = ({ state, item }) => {
   const date = new Date(item.date);
 
   return (
-      <ListSection>
-         
-          <article>
-      <BoxMain>
-        <div>
-          <Link link={item.link}>
-            <Title dangerouslySetInnerHTML={{ __html: item.title.rendered }} />
-          </Link>
+    <>
 
-          <div>
-            {/* If the post has an author, we render a clickable author text. */}
-            {author && (
+       <article>
+          <BoxMain>
+            <div>
+              <Link link={item.link}>
+                <Title dangerouslySetInnerHTML={{ __html: item.title.rendered }} />
+              </Link>
+
+              <div>
+                {/* If the post has an author, we render a clickable author text. */}
+                {/* {author && (
               <StyledLink link={author.link}>
                 <AuthorName>
-                  By <b>{author.name}</b>
+                  By {author.name}
                 </AuthorName>
               </StyledLink>
-            )}
-            <PublishDate>
-              {" "}
-              on <b>{date.toDateString()}</b>
-            </PublishDate>
-          </div>
+            )} */}
+                <PublishDate>
+                  {" "}
+                  {date.toDateString()}
+                </PublishDate>
+              </div>
 
-          {/*
+              {/*
        * If the want to show featured media in the
        * list of featured posts, we render the media.
        */}
 
-          {/* If the post has an excerpt (short summary text), we render it */}
-          {item.excerpt && (
-            <PostItemText>
-              {state.theme.featured.showOnList && (
-                <FeaturedMedia id={item.featured_media} />
+              {/* If the post has an excerpt (short summary text), we render it */}
+              {item.excerpt && (
+                <PostItemText>
+                  {state.theme.featured.showOnList && (
+                    <FeaturedMedia id={item.featured_media} />
+                  )}
+
+                  <Excerpt dangerouslySetInnerHTML={{ __html: item.excerpt.rendered }} />
+
+
+                </PostItemText>
               )}
-
-              <Excerpt dangerouslySetInnerHTML={{ __html: item.excerpt.rendered }} />
-
-
-            </PostItemText>
-          )}
-        </div>
-      </BoxMain>
-    </article>
-          
-      </ListSection>
+            </div>
+          </BoxMain>
+        </article>
+ 
+ 
+</>
   );
 };
 
@@ -68,7 +69,8 @@ const Item = ({ state, item }) => {
 export default connect(Item);
 
 const Title = styled.h1`
-  font-size: 2rem;
+font-size: 30px;
+font-weight: 500;
   color: rgba(12, 17, 43);
   margin: 0;
   padding-top: 24px;
@@ -78,44 +80,36 @@ const Title = styled.h1`
 const PostItemText = styled.div`
   display:flex;
   width: 100%;
+
+     @media(min-width:320px) and (max-width: 992px){
+      display: block;
+    }
+
 `;
+
 const BoxMain = styled.div`
 background: white;
 padding: 10px 50px 50px 50px;
 border-right: 2px solid rgba(0, 0, 0, 0.07);
 border-bottom: 2px solid rgba(0, 0, 0, 0.07);
 box-shadow: 0 0 10px rgba(232, 234, 237, 0.5);
-margin-top: 20px;
+margin-bottom: 20px;
+
+@media(min-width:320px) and (max-width: 767px){
+
+  padding: 10px 20px 20px 20px;
+
+}
 `;
 
 const PostImg = styled.span`
-    width: 485px;
-    height: 160px;
-    background: grey;
-    margin-top: 20px;
-    margin-right: 20px;
-`;
-const ListSection = styled.div`
-    width: 100%;
-    background: grey;
-    margin-top: 20px;
-    margin-right: 20px;
-`;
-const ContentItem = styled.div`
-    width: 75%;
-    height: 160px;
+height: 170px;
+width: 56.5%;
     background: grey;
     margin-top: 20px;
     margin-right: 20px;
 `;
 
-const SideBarMain = styled.div`
-    width: 24%;
-    height: 160px;
-    background: grey;
-    margin-top: 20px;
-    margin-right: 20px;
-`;
 const AuthorName = styled.span`
   color: rgba(12, 17, 43, 0.9);
   font-size: 0.9em;
@@ -136,4 +130,18 @@ const Excerpt = styled.div`
   line-height: 1.6em;
   color: rgba(12, 17, 43, 0.8);
   width:100%;
+  margin-left:35px;
+
+  @media(min-width:320px) and (max-width: 992px){
+    margin-left:0px;
+  }
+
+  p:nth-child(2){
+
+      background: black;
+      max-width: max-content;
+      color: white;
+      padding: 13px 20px;
+
+  }
 `;

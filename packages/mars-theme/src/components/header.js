@@ -32,14 +32,14 @@ const MainHeader = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    @media (max-width: 560px) {
+    @media (max-width: 768px) {
       padding: 20px 15px;
     }
 
 `;
 
 const Container = styled.div`
-  width: 1250px;
+  width: 1150px;
   max-width: 100%;
   box-sizing: border-box;
   padding: 0;

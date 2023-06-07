@@ -45,14 +45,23 @@ export default connect(FeaturedMedia);
 
 const Container = styled.div`
   margin-top: 16px;
-  margin-right: 16px;
-  height: 270px;
+  margin-right: 0px;
   ${({ isAmp }) => isAmp && "position: relative;"};
+
+  @media(min-width:320px) and (max-width: 992px){
+    margin-right: 0px;
+  }
 `;
 
 const StyledImage = styled(Image)`
   display: block;
-  height: 100%;
-  width: 100%;
+  height: 160px;
+  width: 275px;
   object-fit: cover;
+
+
+  @media(min-width:320px) and (max-width: 992px){
+    width: 100%;
+    height: 100%;
+  }
 `;

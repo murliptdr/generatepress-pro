@@ -38,7 +38,7 @@ const NavContainer = styled.nav`
   overflow-x: auto;
   justify-content: flex-end;
 
-  @media screen and (max-width: 560px) {
+  @media screen and (max-width: 768px) {
     display: none;
   }
 `;

@@ -47,6 +47,30 @@ const Theme = ({ state }) => {
           <PageError when={data.isError} />
         </Switch>
       </Main>
+
+      <FooterBg>
+
+        <Container>
+          <FooterMain>
+            <FooterText>
+              © 2023 Marketer&nbsp;• Built with&nbsp;<a href="https://generatepress.com/">GeneratePress</a>
+            </FooterText>
+            <FooterMenu>
+              <ul>
+                <li>
+                  <a href="#">Privacy Policy</a>
+                </li>
+                <li>
+                  <a href="#">Terms</a>
+                </li>
+                <li>
+                  <a href="#">Contact</a>
+                </li>
+              </ul>
+            </FooterMenu>
+          </FooterMain>
+        </Container>
+      </FooterBg>
     </>
   );
 };
@@ -72,13 +96,73 @@ const HeadContainer = styled.div`
   flex-direction: column;
   background-color: #242226;
 `;
-
 const Main = styled.div`
   display: flex;
   justify-content: center;
-  background-image: linear-gradient(
-    180deg,
-    rgba(66, 174, 228, 0.1),
-    rgba(66, 174, 228, 0)
+  background:#fafafa;
   );
+`;
+
+const FooterBg = styled.footerMain`
+  background: #fafafa;
+  width: 97%;
+  float: left;
+  padding: 10px 10px;
+`;
+
+const FooterMain = styled.footerMain`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 10px;
+  );
+
+  @media(min-width:320px) and (max-width: 767px){
+    display: block;
+  }
+`;
+
+const FooterText = styled.footerText`
+
+a{
+  color:#212121;  
+}
+  );
+`;
+const FooterMenu = styled.footerMenu`
+
+ul{
+  list-style: none;
+    display: flex;
+}
+
+li{
+  margin-right:15px;
+}
+
+a {
+  color: #2f4468;
+}
+  );
+`;
+
+const Container = styled.section`
+width: 1220px;
+margin: 0;
+padding: 0px 50px;
+margin: auto;
+
+@media(min-width:768px) and (max-width: 992px){
+  width: 100%;
+  padding: 0px;
+}
+
+
+
+@media(min-width:320px) and (max-width: 767px){
+  width: 100%;
+  padding: 0px;
+}
+
+
 `;
