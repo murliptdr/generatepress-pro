@@ -1,80 +1,147 @@
-import { connect, styled } from "frontity";
+import { connect, styled, useConnect } from "frontity";
 import Link from "./link";
-
+import Skelton from "./Skelton";
 /**
  * Navigation Component
  *
  * It renders the navigation links
  */
-const Nav = ({ state }) => (
-  <NavContainer>
-    {state.theme.menu.map(([name, link]) => {
-      // Check if the link matched the current page url
-      const data = state.source.get(state.router.link);
-      const isCurrentPage = data.route === link;
+const Nav = ({ state }) => {
+  const { actions } = useConnect();
 
-      return (
-        <NavItem key={name}>
-          {/* If link url is the current page, add `aria-current` for a11y */}
-          <Link link={link} aria-current={isCurrentPage ? "page" : undefined}>
-            {name}
-          </Link>
-        </NavItem>
-      );
-    })}
-  </NavContainer>
-);
+  actions.theme.menuApi();
+  return (
+    <NavWrapper>
+      <MenuNav>
+        <ul>
+        {state.theme.menu?.items ? 
+        state.theme.menu?.items.map(val => 
+
+        <li className="dropdown">
+          <Link link={val.url}>{val.title} </Link>
+
+          <ul className={val.children?.length ? "dropdown-menu multi-level" :""}>
+            {val.children?.map(subval => 
+
+            <li className={subval.children?.length ? "dropdown-submenu" : ""}>
+              <Link link={subval.url}>{subval.title}</Link>
+
+              <ul className="dropdown-menu">
+                {subval.children?.map(value => 
+                <li> <Link link={value.url}>{value.title}</Link> </li>
+                )}
+
+              </ul>
+            </li>
+            )}
+          </ul>
+
+        </li>
+        )
+        
+        :
+        <>
+        <li className="dropdown">
+        <Skelton height={30} width={104} radius={10}/>
+        </li>
+        <li className="dropdown">
+        <Skelton height={30} width={104} radius={10}/>
+        </li>
+        <li className="dropdown">
+        <Skelton height={30} width={104} radius={10}/>
+        </li>
+        <li className="dropdown">
+        <Skelton height={30} width={104} radius={10}/>
+        </li>
+        <li className="dropdown">
+        <Skelton height={30} width={104} radius={10}/>
+        </li>
+      
+        </>
+        }
+      </ul>
+      </MenuNav>
+    </NavWrapper>
+  )
+};
 
 export default connect(Nav);
 
-const NavContainer = styled.nav`
-  list-style: none;
+const NavWrapper = styled.div`
+  align-items: center;
   display: flex;
-  width: 848px;
-  max-width: 100%;
-  box-sizing: border-box;
-  padding: 0 24px;
-  margin: 0;
-  overflow-x: auto;
-  justify-content: flex-end;
+`;
 
-  @media screen and (max-width: 768px) {
-    display: none;
+const MenuNav = styled.nav`
+  display: none;
+  @media (min-width: 1000px) {
+    display: block;
+    width: 100%;
+  }
+
+  ul {
+    list-style:none;
+    display: flex;
+  }
+
+  li:hover{
+
+  }
+
+`;
+
+const UXHeader = styled.uxheader`
+
+
+
+`;
+
+const Menu = styled.ul`
+  display: flex;
+  font-size: 1.8rem;
+  font-weight: 500;
+  letter-spacing: -0.0277em;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  list-style: none;
+  margin: 0;
+
+  @media (min-width: 1220px) {
+    margin-top: -0.8rem;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: -2.5rem;
   }
 `;
 
-const NavItem = styled.div`
-  padding: 0px;
-  margin: 0 0px;
-  color: #fff;
-  font-size: 16px;
+const MenuItem = styled.li`
+  font-size: inherit;
+  line-height: 1.25;
+  position: relative;
+  margin: 0.8rem 0 0 1.6rem !important;
+
+  @media (min-width: 1220px) {
+    margin: 0.8rem 0 0 2.5rem !important;
+  }
+  :last-child{display:none;}
+`;
+
+const MenuLink = styled(Link)`
+  display: block;
+  line-height: 1.2;
+  text-decoration: none;
+
+  &:hover,
+  &[aria-current="page"] {
+    text-decoration: underline;
+  }
+`;
+
+
+const SubMenu = styled.submenu`
+  display:none
+`;
+
+const SubMenuChild = styled.submenuchild`
   
-  box-sizing: border-box;
-  flex-shrink: 0;
-
-  & > a {
-    display: inline-block;
-    line-height: 2em;
-    padding: 15.5px 20px;
-    border-bottom: 2px solid;
-    border-bottom-color: transparent;
-    /* Use for semantic approach to style the current link */
-    &[aria-current="page"] {
-      background: #35343a;
-    }
-  }
-
-  &:first-of-type {
-    margin-left: 0;
-  }
-
-  &:last-of-type {
-    margin-right: 0;
-
-    &:after {
-      content: "";
-      display: inline-block;
-      width: 24px;
-    }
-  }
 `;

@@ -1,4 +1,4 @@
-import { Global, css, connect, styled, Head } from "frontity";
+import { Global, css, connect, styled, Head, useConnect } from "frontity";
 import Switch from "@frontity/components/switch";
 import Header from "./header";
 import List from "./list";
@@ -16,9 +16,9 @@ import PageError from "./page-error";
  * @returns The top-level react component representing the theme.
  */
 const Theme = ({ state }) => {
+
   // Get information about the current URL.
   const data = state.source.get(state.router.link);
-
   return (
     <>
       {/* Add some metatags to the <head> of the HTML. */}
@@ -88,6 +88,275 @@ const globalStyles = css`
     color: inherit;
     text-decoration: none;
   }
+  
+.dropdown, .dropup {
+  position: relative;
+}
+
+header#site-header a{
+  position: relative;
+  display: block;
+  font-weight: 500;
+  font-size:20px;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1000;
+  display: none;
+  float: left;
+  min-width: 160px;
+  padding: 5px 0;
+  margin: 2px 0 0;
+  font-size: 14px;
+  text-align: left;
+  list-style: none;
+  background-color: #fff;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  border-radius: 4px;
+  -webkit-box-shadow: 0 6px 12px rgb(0 0 0 / 18%);
+  box-shadow: 0 6px 12px rgb(0 0 0 / 18%);
+}
+
+.dropdown:hover>.dropdown-menu {
+  display: block !important;
+}
+
+
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  -webkit-border-radius: 0 6px 6px 6px;
+  -moz-border-radius: 0 6px 6px;
+  border-radius: 0 6px 6px 6px;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1000;
+  display: none !important;
+  float: left;
+  min-width: 160px;
+  padding: 5px 0;
+  margin: 2px 0 0;
+  font-size: 14px;
+  text-align: left;
+  list-style: none;
+  background-color: #fff;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  border-radius: 4px;
+  -webkit-box-shadow: 0 6px 12px rgb(0 0 0 / 18%);
+  box-shadow: 0 6px 12px rgb(0 0 0 / 18%);
+
+}
+
+ul.dropdown-menu.multi-level li a {
+  font-weight: 600 !important;
+  font-size:15px !important;
+}
+
+ul.dropdown-menu.multi-level li {
+  padding: 0px 5px;
+}
+header#site-header .dropdown-menu li {
+  margin-left: 1px !important;
+  padding: 4px 4px;
+}
+
+
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu {
+  position: relative;
+}
+
+
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block !important;
+  margin: 0 !important;
+}
+
+
+header#site-header .SubMenu ul {
+  display: initial !important;
+  margin:0px !important;
+}
+
+header#site-header .SubMenu ul li{
+  margin:0px !important; 
+}
+
+li.submenu-main-item .SubMenu a {
+  font-weight: 300 !important;
+  font-size: 15px;
+}
+.SubMenu h6 {
+  margin: 0 !important;
+  text-transform: capitalize;
+}
+
+.rt_header_main.is-sticky {
+  position: fixed;
+  width: 15%;
+  right: 370px;
+  top: 76px;
+  padding: 0px 15px;
+}
+.is-sticky .sidebar_ad_none{
+  display:none;
+}
+#site-header.hd_fixed {
+  position: fixed !important;
+  top: 0px !important;
+  width: 100%;
+  z-index: 9999;
+  background: #fff !important;
+  transition:all 0.2s ease-in-out 0s;
+  box-shadow: rgb(149 157 165 / 18%) 0px 8px 24px;
+}
+.hd_fixed div{padding:6px 0px !important;}
+
+
+
+
+header#site-header.inner_header{
+  background: #084523 !important;
+  position: inherit;
+}
+
+#site-header.inner_header .dropdown > a {
+  color: white !important;
+}
+.dropdown .dropdown-menu li a{color:#000 !important;}
+
+
+.submenu-main-item:hover .SubMenu {
+  display: block;
+  transition: all 0.5s;
+}
+header#site-header .SubMenu ul li {
+  margin: 6px 0px!important;
+  padding: 0px 10px;
+}
+
+.SubMenu {
+  display: none;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+  position: absolute;
+  width: max-content;
+  background: white;
+  padding: 0px 0px;
+  margin-left: 5px;
+  border-radius: 3px;
+}
+
+@media (min-width:1600px) and (max-width:1800px){
+  .rt_header_main.is-sticky {
+    position: fixed;
+    width: 18%;
+    right: 231px;
+    top: 41px;
+}
+}
+
+@media (min-width:1400px) and (max-width:1600px){
+  .rt_header_main.is-sticky {
+    width: 21%;
+    right: 126px;
+    top: 0px;
+    padding: 0px 15px;
+  }
+}
+
+@media (min-width:1250px) and (max-width:1300px){
+  .rt_header_main.is-sticky {
+    width: 21%;
+    right: 39px;
+    top: 0px;
+    padding: 0px 15px;
+  }
+}
+
+@media (max-width:1249px){
+  .rt_header_main.is-sticky {
+    width: 90%;
+    position:sticky;
+    padding: 0px 15px;
+  }
+}
+
+
+
+
+@media (min-width:768px) and (max-width:1024px){
+.rt_header_main.is-sticky {
+  width: 29%;
+  right: 0px;
+}
+
+}
+@media (min-width:992px){
+
+  .header_ad_790{
+  width:788px;
+  margin: 0 auto;
+  }
+  
+}
+
+@media (min-width:320px) and (max-width:767px){
+.rt_header_main.is-sticky {
+  position: inherit;
+  right: 0;
+  top: 0px;
+  width:100%;
+  padding: inherit;
+}
+header#site-header a {
+  color: black ;
+  padding: 20px 0px 10px 0px;
+  font-size: 16px;
+  font-weight: 500;
+}
+header#site-header.inner_header {
+  background: #084523;
+}
+
+header#site-header li {
+  margin: 0.8rem 0 0 0rem!important;
+
+}
+#site-header.inner_header a {
+  color: black!important;
+}
+header#site-header.inner_header span {
+  color: #fff !important;
+}
+header#site-header.inner_header button svg {
+  fill: #fff;
+}
+
+header#site-header.inner_header {
+  position: relative;
+}
+header#site-header.inner_header svg {
+  fill: white;
+}
+header#site-header.inner_header span {
+  color: white;
+}
+
+}  
 `;
 
 const HeadContainer = styled.div`
