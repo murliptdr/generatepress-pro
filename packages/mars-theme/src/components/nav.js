@@ -83,10 +83,10 @@ const MenuNav = styled.nav`
     list-style:none;
     display: flex;
   }
+a{
+  padding: 10px 15px;
+}
 
-  li:hover{
-
-  }
 
 `;
 

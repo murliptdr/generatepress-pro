@@ -164,7 +164,7 @@ ul.dropdown-menu.multi-level li a {
 }
 
 ul.dropdown-menu.multi-level li {
-  padding: 0px 5px;
+  padding: 4px 0px;
 }
 header#site-header .dropdown-menu li {
   margin-left: 1px !important;
@@ -224,8 +224,6 @@ li.submenu-main-item .SubMenu a {
   box-shadow: rgb(149 157 165 / 18%) 0px 8px 24px;
 }
 .hd_fixed div{padding:6px 0px !important;}
-
-
 
 
 header#site-header.inner_header{
@@ -421,12 +419,15 @@ margin: 0;
 padding: 0px 50px;
 margin: auto;
 
-@media(min-width:768px) and (max-width: 992px){
+@media(min-width:1024px) and (max-width: 1199px){
   width: 100%;
   padding: 0px;
 }
 
-
+@media(min-width:768px) and (max-width: 992px){
+  width: 100%;
+  padding: 0px;
+}
 
 @media(min-width:320px) and (max-width: 767px){
   width: 100%;
