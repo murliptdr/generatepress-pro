@@ -24,12 +24,17 @@ const settings = {
       "name": "@frontity/wp-source",
       "state": {
         "source": {
-          "url": "https://graphicux.com"
-                }
+          "url": "https://graphicux.com",
+          "params": {
+            "per_page": 9,
+            "type": ["post", "page"],
+          },
+        }
       }
     },
     "@frontity/tiny-router",
-    "@frontity/html2react"
+    "@frontity/html2react",
+    "frontity-contact-form-7"
   ]
 };
 

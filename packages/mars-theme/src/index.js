@@ -9,7 +9,6 @@ const newHandler = {
   pattern: "/(.*)?/:slug",
   func: async ({ route, params, state, libraries }) => {
     // 1. try with category.
-    console.log(route)
     try {
       if (route.includes("/author/")) {
         const author = libraries.source.handlers.find(
@@ -51,8 +50,8 @@ const marsTheme = {
       menu: [],
       isMobileMenuOpen: false,
       featured: {
-        showOnList: false,
-        showOnPost: false,
+        showOnList: true,
+        showOnPost: true,
       },
     },
   },
