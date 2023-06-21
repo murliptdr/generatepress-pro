@@ -12,7 +12,7 @@
   },
   "scripts": {
     "dev": "frontity dev",
-    "build": "frontity build",
+    "build": "cross-env NODE_OPTIONS='--openssl-legacy-provider' frontity build",
     "serve": "frontity serve"
   },
   "prettier": {},
@@ -23,6 +23,7 @@
     "@frontity/tiny-router": "^1.4.4",
     "@frontity/wp-source": "^1.11.7",
     "frontity": "^1.17.2",
-    "frontity-contact-form-7": "^0.1.7"
+    "frontity-contact-form-7": "^0.1.7",
+    "react-adsense": "^0.1.0"
   }
 }
