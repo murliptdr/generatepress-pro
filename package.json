@@ -23,6 +23,7 @@
     "@frontity/tiny-router": "^1.4.4",
     "@frontity/wp-source": "^1.11.7",
     "@vercel/node-bridge": "^4.0.1",
+    "cross-env": "^7.0.3",
     "frontity": "^1.17.2",
     "frontity-contact-form-7": "^0.1.7",
     "react-adsense": "^0.1.0"
