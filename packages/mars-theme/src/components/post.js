@@ -3,6 +3,7 @@ import { connect, styled } from "frontity";
 import Link from "./link";
 import List from "./list";
 import FeaturedMedia from "./featured-media";
+import GoogleAds from "./ads/GoogleAds";
 
 /**
  * The Post component that Mars uses to render any kind of "post type", like
@@ -81,6 +82,7 @@ const Post = ({ state, actions, libraries }) => {
 
         <SideBar>
           <SideOne>
+          <GoogleAds slot={state.theme.slots[0]}/>
             <h2 >Product Highlight</h2>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc imperdiet rhoncus arcu non aliquet. Sed tempor mauris a purus porttitor</p>
             <a href="#">Learn more</a>

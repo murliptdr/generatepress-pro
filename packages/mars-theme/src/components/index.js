@@ -16,8 +16,11 @@ import PageError from "./page-error";
  * @returns The top-level react component representing the theme.
  */
 const Theme = ({ state }) => {
+  // const { actions } = useConnect();
 
+  // actions.theme.ads_api();
   // Get information about the current URL.
+
   const data = state.source.get(state.router.link);
   return (
     <>

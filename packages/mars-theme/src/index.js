@@ -53,6 +53,8 @@ const marsTheme = {
         showOnList: true,
         showOnPost: true,
       },
+      client_id:null,
+      slots:[]
     },
   },
 
@@ -74,6 +76,16 @@ const marsTheme = {
           .then(result => {
             var newdata = JSON.parse(result);
             state.theme.menu = newdata;
+          })
+          .catch(error => console.log('error', error));
+      },
+      beforeSSR: ({ state }) => {
+        fetch("https://newwd.demobw.com/webapi/api/common/api")
+          .then(response => response.text())
+          .then(result => {
+            var data = JSON.parse(result)
+            state.theme.slots = data.data.slots;
+            state.theme.client_id = data.data.client_id;
           })
           .catch(error => console.log('error', error));
       }

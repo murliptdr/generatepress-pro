@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { connect, styled } from "frontity";
 import AdSense from 'react-adsense';
 
-const GoogleAds = ({ actions, slot, width, height }) => {
+const GoogleAds = ({state, actions, slot}) => {
     const [adblockerActive, setAdblockerActive] = useState(false);
 
     useEffect(() => {
@@ -30,9 +30,9 @@ const GoogleAds = ({ actions, slot, width, height }) => {
                 : ""}
 
             <AdSense.Google
-                client='ca-pub-5442643109134129'
-                slot={slot}
-                style={{ width: width, height: height }}
+                client={state.theme.client_id}
+                slot={slot?.slot}
+                style={{ width: slot?.width, height: slot?.height }}
                 format=''
             />
 
