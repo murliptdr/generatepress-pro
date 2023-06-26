@@ -3,7 +3,7 @@ const settings = {
   "state": {
     "frontity": {
       "url": "https://graphicux.com",
-      "title": "Test Frontity Blog",
+      "title": "GraphicUX",
       "description": "WordPress installation for Frontity development"
     }
   },
