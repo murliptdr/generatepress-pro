@@ -2,8 +2,8 @@ const settings = {
   "name": "generatepress-pro",
   "state": {
     "frontity": {
-      "url": "https://www.edivaldobrito.com.br/",
-      "title": "GraphicUX",
+      "url": "https://jamesclear.com/",
+      "title": "DummyWP",
       "description": "WordPress installation for Frontity development"
     }
   },
@@ -24,7 +24,7 @@ const settings = {
       "name": "@frontity/wp-source",
       "state": {
         "source": {
-          "url": "https://www.edivaldobrito.com.br/",
+          "url": "https://jamesclear.com/",
           "params": {
             "per_page": 9,
             "type": ["post", "page"],

@@ -53,7 +53,7 @@ const Post = ({ state, actions, libraries }) => {
       <ListMain>
         <BoxMain>
 
-
+          <h1>{post.title.rendered}</h1>
 
           {/* Look at the settings to see if we should include the featured image */}
          <PostDetailsImg>
@@ -61,9 +61,6 @@ const Post = ({ state, actions, libraries }) => {
             <FeaturedMedia id={post.featured_media} />
           )}
          </PostDetailsImg>
-
-
-
 
           {data.isAttachment ? (
             // If the post is an attachment, just render the description property,

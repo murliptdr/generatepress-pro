@@ -1,6 +1,7 @@
 import { connect, styled, useConnect } from "frontity";
 import Link from "./link";
 import Skelton from "./Skelton";
+import {useEffect} from "react";
 /**
  * Navigation Component
  *
@@ -8,8 +9,10 @@ import Skelton from "./Skelton";
  */
 const Nav = ({ state }) => {
   const { actions } = useConnect();
-
+useEffect(()=>{
   actions.theme.menuApi();
+},[])
+  
   return (
     <NavWrapper>
       <MenuNav>
