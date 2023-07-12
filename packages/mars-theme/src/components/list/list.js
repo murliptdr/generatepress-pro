@@ -134,7 +134,7 @@ const ListMain = styled.div`
 `;
 
 const SideBar = styled.div`
-    width: 21.5%;
+    width: 30%;
     height: max-content;
     margin-right: 20px;
 
@@ -146,10 +146,10 @@ const SideBar = styled.div`
     }
 
     p{
-      font-family: Open Sans, sans-serif;
-    font-size: 17px;
-    color: white;
-    margin-bottom: 50px;
+      font-family: revert;
+      font-size: 17px;
+      color: white;
+      margin-bottom: 40px;
     }
     a{
       background: black;
@@ -160,15 +160,12 @@ const SideBar = styled.div`
     padding: 13px 20px;
     }
 
-    @media(min-width:320px) and (max-width: 992px){
-      width: 100%;
-    }
 `;
 
 
 const PostMain = styled.div`
-    width: 66%;
-    margin-right:18px;
+    width: 70%;
+    margin-right:20px;
 
     @media(min-width:320px) and (max-width: 992px){
       width: 100%;
@@ -177,7 +174,6 @@ const PostMain = styled.div`
 `;
 
 const SideOne = styled.div`
-    width: 100%;
     background: #83b0de;
     padding: 50px;
     @media(min-width:320px) and (max-width: 992px)
@@ -189,7 +185,6 @@ const SideOne = styled.div`
 `;
 
 const SideTwo = styled.div`
-width: 100%;
 background: #ffffff;
 height:max-content;
 margin-top:30px;

@@ -2,6 +2,7 @@ import { connect, styled, useConnect } from "frontity";
 import Link from "./link";
 import Skelton from "./Skelton";
 import {useEffect} from "react";
+import searchicon from "../Assets/img/magnifying-glass.png";
 /**
  * Navigation Component
  *
@@ -62,6 +63,9 @@ useEffect(()=>{
       
         </>
         }
+        <li className="dropdown">
+         <img src={searchicon} onClick={()=> actions.theme.searchtoggle()} alt="search-icon" />
+        </li>
       </ul>
       </MenuNav>
     </NavWrapper>

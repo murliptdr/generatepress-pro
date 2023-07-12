@@ -6,7 +6,8 @@ import Post from "./post";
 import Loading from "./loading";
 import Title from "./title";
 import PageError from "./page-error";
-
+import SearchForm from "./search-form";
+import SearchResults from "./search-results";
 /**
  * Theme is the root React component of our theme. The one we will export
  * in roots.
@@ -16,12 +17,13 @@ import PageError from "./page-error";
  * @returns The top-level react component representing the theme.
  */
 const Theme = ({ state }) => {
-  // const { actions } = useConnect();
+  const { actions } = useConnect();
 
   // actions.theme.ads_api();
   // Get information about the current URL.
 
   const data = state.source.get(state.router.link);
+
   return (
     <>
       {/* Add some metatags to the <head> of the HTML. */}
@@ -45,6 +47,7 @@ const Theme = ({ state }) => {
       <Main>
         <Switch>
           <Loading when={data.isFetching} />
+          <SearchResults when={data.isSearch}/>
           <List when={data.isArchive} />
           <Post when={data.isPostType} />
           <PageError when={data.isError} />
@@ -74,6 +77,10 @@ const Theme = ({ state }) => {
           </FooterMain>
         </Container>
       </FooterBg>
+      {state.theme.searchshow ?
+        <div className="search_modal" onClick={(e) => e.target.className == "search_modal" ? actions.theme.searchtoggle() : ""}>
+          <SearchForm />
+        </div> : ""}
     </>
   );
 };
@@ -81,6 +88,10 @@ const Theme = ({ state }) => {
 export default connect(Theme);
 
 const globalStyles = css`
+
+
+
+
   body {
     margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
@@ -357,7 +368,56 @@ header#site-header.inner_header span {
   color: white;
 }
 
-}  
+
+}
+
+.search_modal {
+  margin: auto;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+  backdrop-filter: blur(3px);
+  transition: opacity 500ms ease;
+}
+.search_input_main input {
+  height: 55px;
+  background-color: transparent;
+  border: 0;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+  color: currentColor;
+  outline: none;
+  box-shadow: none;
+  padding: 10px 15px;
+  width: 100%;
+  font-family: system-ui;
+}
+
+.search_input_main {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  background: #ffffff;
+  width: 30%;
+  justify-content: space-between;
+}
+.search_input_main button {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
 `;
 
 const HeadContainer = styled.div`

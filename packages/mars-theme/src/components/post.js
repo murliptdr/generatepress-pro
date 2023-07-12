@@ -53,33 +53,35 @@ const Post = ({ state, actions, libraries }) => {
       <ListMain>
         <BoxMain>
 
-          <h1>{post.title.rendered}</h1>
+          <BoxD>
+            <h1>{post.title.rendered}</h1>
 
-          {/* Look at the settings to see if we should include the featured image */}
-         <PostDetailsImg>
-         {state.theme.featured.showOnPost && (
-            <FeaturedMedia id={post.featured_media} />
-          )}
-         </PostDetailsImg>
+            {/* Look at the settings to see if we should include the featured image */}
+            <PostDetailsImg>
+              {state.theme.featured.showOnPost && (
+                <FeaturedMedia id={post.featured_media} />
+              )}
+            </PostDetailsImg>
 
-          {data.isAttachment ? (
-            // If the post is an attachment, just render the description property,
-            // which already contains the thumbnail.
-            <div dangerouslySetInnerHTML={{ __html: post.description.rendered }} />
-          ) : (
-            // Render the content using the Html2React component so the HTML is
-            // processed by the processors we included in the
-            // libraries.html2react.processors array.
-            <Content>
-              <Html2React html={post.content.rendered} />
-            </Content>
-          )}
+            {data.isAttachment ? (
+              // If the post is an attachment, just render the description property,
+              // which already contains the thumbnail.
+              <div dangerouslySetInnerHTML={{ __html: post.description.rendered }} />
+            ) : (
+              // Render the content using the Html2React component so the HTML is
+              // processed by the processors we included in the
+              // libraries.html2react.processors array.
+              <Content>
+                <Html2React html={post.content.rendered} />
+              </Content>
+            )}
+          </BoxD>
         </BoxMain>
 
 
         <SideBar>
           <SideOne>
-          {/* <GoogleAds slot={state.theme.slots[0]}/> */}
+            {/* <GoogleAds slot={state.theme.slots[0]}/> */}
             <h2 >Product Highlight</h2>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc imperdiet rhoncus arcu non aliquet. Sed tempor mauris a purus porttitor</p>
             <a href="#">Learn more</a>
@@ -183,7 +185,7 @@ const ListMain = styled.div`
 
 
 const SideBar = styled.div`
-    width: 21.5%;
+    width: 30%;
     height: max-content;
     margin-right: 20px;
 
@@ -195,10 +197,10 @@ const SideBar = styled.div`
     }
 
     p{
-      font-family: Open Sans, sans-serif;
+      font-family: revert;
     font-size: 17px;
     color: white;
-    margin-bottom: 50px;
+    margin-bottom: 40px;
     }
     a{
       background: black;
@@ -209,14 +211,11 @@ const SideBar = styled.div`
     padding: 13px 20px;
     }
 
-    @media(min-width:320px) and (max-width: 992px){
-      width: 100%;
-    }
+
 `;
 
 
 const SideOne = styled.div`
-    width: 100%;
     background: #83b0de;
     padding: 50px;
     @media(min-width:320px) and (max-width: 992px)
@@ -228,7 +227,6 @@ const SideOne = styled.div`
 `;
 
 const SideTwo = styled.div`
-width: 100%;
 background: #ffffff;
 height:max-content;
 margin-top:30px;
@@ -308,16 +306,8 @@ const StyledLink = styled(Link)`
   padding: 15px 0;
 `;
 
-
-const BoxMain = styled.div`
-width: 59%;
-background: white;
-padding: 40px 50px 50px 50px;
-border-right: 2px solid rgba(0, 0, 0, 0.07);
-border-bottom: 2px solid rgba(0, 0, 0, 0.07);
-box-shadow: 0 0 10px rgba(232, 234, 237, 0.5);
-margin-bottom: 20px;
-margin-right:18px;
+const BoxD = styled.div`
+padding: 40px 50px 50px 50px ;
 
 @media(min-width:768px) and (max-width: 992px){
   width: 90%;
@@ -329,6 +319,27 @@ margin-right:18px;
 @media(min-width:320px) and (max-width: 767px){
   width: 90%;
   padding: 10px 20px 20px 20px;
+  margin: 0;
+
+}
+`;
+const BoxMain = styled.div`
+width: 70%;
+background: white;
+border-right: 2px solid rgba(0, 0, 0, 0.07);
+border-bottom: 2px solid rgba(0, 0, 0, 0.07);
+box-shadow: 0 0 10px rgba(232, 234, 237, 0.5);
+margin-bottom: 20px;
+margin-right:20px;
+
+@media(min-width:768px) and (max-width: 992px){
+  width: 90%;
+  margin: 20px 20px;
+
+}
+
+@media(min-width:320px) and (max-width: 767px){
+  width: 90%;
   margin: 0;
 
 }

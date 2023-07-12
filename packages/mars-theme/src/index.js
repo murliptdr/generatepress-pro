@@ -46,6 +46,7 @@ const marsTheme = {
      * relevant state. It is scoped to the `theme` namespace.
      */
     theme: {
+      searchshow: false,
       autoPrefetch: "in-view",
       menu: [],
       isMobileMenuOpen: false,
@@ -64,6 +65,12 @@ const marsTheme = {
    */
   actions: {
     theme: {
+      searchtoggle: ({ state }) => {
+        state.theme.searchshow = !state.theme.searchshow;
+      },
+      closesearchtoggle: ({ state }) => {
+        state.theme.searchshow = false;
+      },
       toggleMobileMenu: ({ state }) => {
         state.theme.isMobileMenuOpen = !state.theme.isMobileMenuOpen;
       },

@@ -12,7 +12,6 @@ const Header = ({ state }) => {
           <Title>{state.frontity.title}</Title>
         </StyledLink>
         {/* <Description>{state.frontity.description}</Description> */}
-      
         <Nav />
         </MainHeader>
         <MobileMenu />
