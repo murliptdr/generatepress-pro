@@ -26,6 +26,8 @@ const Title = ({ state }) => {
     // 1. Get the post entity from the state and get its title.
     const postTitle = state.source[data.type][data.id].title.rendered;
     // 2. Remove any HTML tags found in the title.
+    console.log(state.source)
+
     const cleanTitle = decode(postTitle);
     // 3. Render the proper title.
     title = `${cleanTitle} - ${state.frontity.title}`;
@@ -33,7 +35,6 @@ const Title = ({ state }) => {
     // Add titles to 404's.
     title = `404 Not Found - ${state.frontity.title}`;
   }
-
   return (
     <Head>
       <title>{title}</title>

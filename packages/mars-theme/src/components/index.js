@@ -8,6 +8,8 @@ import Title from "./title";
 import PageError from "./page-error";
 import SearchForm from "./search-form";
 import SearchResults from "./search-results";
+import MailchimpSubscribe from "react-mailchimp-subscribe"
+
 /**
  * Theme is the root React component of our theme. The one we will export
  * in roots.
@@ -16,6 +18,10 @@ import SearchResults from "./search-results";
  *
  * @returns The top-level react component representing the theme.
  */
+
+const url = "https://app.us21.list-manage.com/subscribe/post?u=238f9ab74235afad2b7746f82&id=9eb09577a0";
+const SimpleForm = () => <MailchimpSubscribe url={url} />
+
 const Theme = ({ state }) => {
   const { actions } = useConnect();
 
@@ -23,14 +29,15 @@ const Theme = ({ state }) => {
   // Get information about the current URL.
 
   const data = state.source.get(state.router.link);
-
   return (
     <>
       {/* Add some metatags to the <head> of the HTML. */}
       <Title />
       <Head>
         <meta name="description" content={state.frontity.description} />
+        <link rel="canonical" href={state.source.url + state.router.link} />
         <html lang="en" />
+
       </Head>
 
       {/* Add some global styles for the whole site, like body or a's. 
@@ -47,12 +54,27 @@ const Theme = ({ state }) => {
       <Main>
         <Switch>
           <Loading when={data.isFetching} />
-          <SearchResults when={data.isSearch}/>
+          <SearchResults when={data.isSearch} />
           <List when={data.isArchive} />
           <Post when={data.isPostType} />
           <PageError when={data.isError} />
         </Switch>
       </Main>
+
+
+
+      <MailchimpSubscribe
+        url={url}
+        render={({ subscribe, status, message }) => (
+          <div>
+            <SimpleForm onSubmitted={formData => subscribe(formData)} />
+            {status === "sending" && <div style={{ color: "blue" }}>sending...</div>}
+            {status === "error" && <div style={{ color: "red" }} dangerouslySetInnerHTML={{ __html: message }} />}
+            {status === "success" && <div style={{ color: "green" }}>Subscribed !</div>}
+          </div>
+        )}
+      />
+
 
       <FooterBg>
 
