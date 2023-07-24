@@ -47,7 +47,7 @@ const Theme = ({ state }) => {
       <Main>
         <Switch>
           <Loading when={data.isFetching} />
-          <SearchResults when={data.isSearch}/>
+          <SearchResults when={data.isSearch} />
           <List when={data.isArchive} />
           <Post when={data.isPostType} />
           <PageError when={data.isError} />
@@ -102,9 +102,102 @@ const globalStyles = css`
     color: inherit;
     text-decoration: none;
   }
+
   
+  .mob_menu_main ul {
+    list-style: none;
+    padding: 0;
+    margin:0px;
+  }
+  
+  .mob_menu_main .parent_menu {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  ul.sub_menu_ul {
+    padding: 0px 0px 0px 15px;
+}
+
+// .mob_menu_main a {
+//     font-size: 20px;
+// }
+
+.mob_menu_main p {
+  margin: 0;
+  font-size: 18px;
+}
+
+.sub_menu_ul li a {
+  font-size: 16px;
+}
+.sub_menu_ul li a {
+  text-transform: capitalize;
+}
+.parent_div {
+  padding: 15px 0px;
+  border-bottom: 1px solid #424242;
+}
+.parent_div:hover .parent_menu img {
+  transform: rotate(180deg);
+  transition: all 0.5s;
+}
+.sub_menu_a {
+  display: flex;
+  justify-content: space-between;
+}
+.sub_menu_ul li {
+  padding: 10px 0px;
+  padding: 10px 0px 5px 0px;
+}
+.mob_menu_main ul li a {
+  text-transform: capitalize;
+  display:flex;
+}
+
+ul.sub_menu_inner {
+  padding: 12px 15px 0px 15px;
+}
+ul.sub_menu_ul li:nth-last-child(1) {
+  padding-bottom: 0;
+}
 .dropdown, .dropup {
   position: relative;
+}
+
+.parent_div:hover .sub_menu_ul {
+  opacity: 1;
+  -webkit-transition: 0.5s;
+  transition: all 0.5s;
+  transform: translate(0px, 0px);
+  position: inherit;
+}
+li.single_menu_item a {
+    padding: 15px 0px;
+}
+ul.sub_menu_ul {
+  opacity: 0;
+  position: absolute;
+  transform: translate(0px, -10px);
+}
+
+
+.submenu_main:hover ul.sub_menu_inner {
+  opacity: 1;
+  -webkit-transition: 0.5s;
+  transition: all 0.5s;
+  transform: translate(0px, 0px);
+  position: inherit;
+}
+.sub_menu_inner {
+  opacity: 0;
+  position: absolute;
+  transform: translate(0px, -10px);
+}
+
+li.submenu_main:hover .sub_menu_a img {
+  transform: rotate(180deg);
+  transition: all 0.5s;
 }
 
 header#site-header a{
@@ -171,12 +264,16 @@ header#site-header a{
   box-shadow: 0 6px 12px rgb(0 0 0 / 18%);
 
 }
-
+ul.sub_menu_ul {
+  padding: 7px 0px 0px 10px;
+}
 ul.dropdown-menu.multi-level li a {
   font-weight: 600 !important;
   font-size:15px !important;
 }
-
+.single_menu_item {
+  border-bottom: 1px solid #424242;
+}
 ul.dropdown-menu.multi-level li {
   padding: 4px 0px;
 }
@@ -334,6 +431,10 @@ header#site-header .SubMenu ul li {
   width:100%;
   padding: inherit;
 }
+.mob_menu_main {
+  padding: 12px 30px 0px 20px;
+  margin-top: 0;
+}
 header#site-header a {
   color: black ;
   padding: 20px 0px 10px 0px;
@@ -449,6 +550,7 @@ const FooterMain = styled.footerMain`
 
   @media(min-width:320px) and (max-width: 767px){
     display: block;
+    text-align: center;
   }
 `;
 
@@ -464,6 +566,10 @@ const FooterMenu = styled.footerMenu`
 ul{
   list-style: none;
     display: flex;
+    
+    @media(min-width:320px) and (max-width: 767px){
+      justify-content: center;
+    }
 }
 
 li{
@@ -473,6 +579,8 @@ li{
 a {
   color: #2f4468;
 }
+
+
   );
 `;
 

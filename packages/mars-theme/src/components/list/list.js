@@ -111,7 +111,7 @@ padding: 0px 50px;
 
 @media(min-width:320px) and (max-width: 767px){
   width: 100%;
-  padding: 0px;
+  padding: 15px;
 }
 
 
@@ -158,6 +158,10 @@ const SideBar = styled.div`
     max-width: max-content;
     color: white;
     padding: 13px 20px;
+    }
+
+    @media(min-width:320px) and (max-width: 767px){
+      width: 100%;
     }
 
 `;
