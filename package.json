@@ -26,6 +26,7 @@
     "@frontity/tiny-router": "^1.4.4",
     "@frontity/wp-comments": "^1.0.0",
     "@frontity/wp-source": "^1.11.7",
+    "@frontity/yoast": "^2.1.1",
     "frontity": "^1.17.2",
     "frontity-contact-form-7": "^0.1.7",
     "react-adsense": "^0.1.0",
