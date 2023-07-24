@@ -2,7 +2,7 @@ const settings = {
   "name": "generatepress-pro",
   "state": {
     "frontity": {
-      "url": "https://graphicux.com/",
+      "url": "https://review.demobw.live",
       "title": "DummyWP",
       "description": "WordPress installation for Frontity development"
     }
@@ -24,7 +24,7 @@ const settings = {
       "name": "@frontity/wp-source",
       "state": {
         "source": {
-          "url": "https://graphicux.com/",
+          "url": "https://review.demobw.live",
           "params": {
             "per_page": 9,
             "type": ["post", "page"],
@@ -36,6 +36,7 @@ const settings = {
     "@frontity/html2react",
     "@frontity/head-tags",
     "@frontity/wp-comments",
+    "@frontity/yoast",
     {
       name: "@frontity/google-analytics",
       state: {
