@@ -46,16 +46,16 @@ const MenuModal = ({ ...props }) => {
               <li className="parent_div">
 
                 <p className="parent_menu" onClick={MenuToggle}>
-                  Menu 1
-                  <img src={Down} />
+                 <Link to="/"> Menu 1 </Link>
+                  <img className={visible ? "icn_rotate " : "icn_rotate_transi"} src={Down} />
                 </p>
-                <ul className={setVisible = true ? "sub_menu_ul" : ""}>
+                <ul className={visible ? "sub_menu_ul" : "d-none"}>
                   <li className="submenu_main">
-                    <p className="sub_menu_a">
-                      Sub item 1
-                      <img src={Down} />
+                    <p className="sub_menu_a" onClick={SubMenuToggle}>
+                    <Link to="/"> Sub item 1 </Link>
+                      <img className={submenu ? "icn_rotate " : "icn_rotate_transi"} src={Down} />
                     </p>
-                    <ul className="sub_menu_inner">
+                    <ul className={submenu ? "sub_menu_inner" : "d-none"}>
                       <Link className="sub_menu_a" to="#">
                         sub menu inner
                       </Link>
