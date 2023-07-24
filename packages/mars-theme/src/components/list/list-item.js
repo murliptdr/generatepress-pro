@@ -10,6 +10,7 @@ import FeaturedMedia from "../featured-media";
  * - Author: name of author and published date
  * - FeaturedMedia: the featured image/video of the post
  */
+
 const Item = ({ state, item }) => {
   const author = state.source.author[item.author];
   const date = new Date(item.date);
@@ -51,7 +52,7 @@ const Item = ({ state, item }) => {
                     <FeaturedMedia id={item.featured_media} />
                   )}
 
-                  <Excerpt dangerouslySetInnerHTML={{ __html: item.excerpt.rendered }} />
+                  <Excerpt dangerouslySetInnerHTML={{__html: item.excerpt.rendered?.slice(0,150) + (item.excerpt.rendered.length > 150 ? "..." : "")}} />
 
 
                 </PostItemText>

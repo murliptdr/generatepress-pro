@@ -1,6 +1,7 @@
-import { styled, connect, useConnect } from "frontity";
+import { styled, connect, useConnect, } from "frontity";
+import React, { useState } from "react";
 import Link from "./link";
-
+import Down from '../Assets/img/down-arrow.png'
 /**
  * The modal containing the mobile menu items.
  *
@@ -10,26 +11,83 @@ import Link from "./link";
 const MenuModal = ({ ...props }) => {
   const { state } = useConnect();
   const { menu } = state.theme;
-  const isThereLinks = menu?.length > 0;
+  const isThereLinks = menu?.items?.length > 0;
+  const [visible, setVisible] = useState(false);
+  const [submenu, setSubmenu] = useState(false);
+
+  const MenuToggle = () => {
+    setVisible((current) => !current);
+  };
+
+  const SubMenuToggle = () => {
+    setSubmenu((current) => !current);
+  };
 
   return (
-    <div {...props}>
-      {state.frontity.mode !== "amp" && <MenuOverlay />}
-      <MenuContent as="nav">
-        {isThereLinks &&
-          menu.map(([name, link]) => (
+    <>
+
+      <div {...props}>
+        {state.frontity.mode !== "amp" && <MenuOverlay />}
+        <MenuContent as="nav">
+          {/* {isThereLinks &&
+          menu?.items?.map((val) => (
             <MenuLink
-              key={name}
-              link={link}
-              aria-current={state.router.link === link ? "page" : undefined}
+              key={val.title}
+              link={val.url}
+              aria-current={state.router.link === val.url ? "page" : undefined}
             >
-              {name}
+              {val.title}
             </MenuLink>
-          ))}
-      </MenuContent>
-    </div>
+          ))} */}
+
+          <div className="mob_menu_main">
+            <ul>
+
+              <li className="parent_div">
+
+                <p className="parent_menu" onClick={MenuToggle}>
+                  Menu 1
+                  <img src={Down} />
+                </p>
+                <ul className={setVisible = true ? "sub_menu_ul" : ""}>
+                  <li className="submenu_main">
+                    <p className="sub_menu_a">
+                      Sub item 1
+                      <img src={Down} />
+                    </p>
+                    <ul className="sub_menu_inner">
+                      <Link className="sub_menu_a" to="#">
+                        sub menu inner
+                      </Link>
+                    </ul>
+
+                  </li>
+                  <li>
+                    <Link to="#"> Sub item 2 </Link>
+                  </li>
+                </ul>
+
+
+              </li>
+
+              <li className="single_menu_item">
+                <Link to="#"> menu 2 </Link>
+              </li>
+
+            </ul>
+          </div>
+
+
+        </MenuContent>
+      </div>
+    </>
   );
+
+
+
 };
+
+
 
 const MenuOverlay = styled.div`
   background-color: #212121;
