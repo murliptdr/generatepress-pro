@@ -188,7 +188,11 @@ const SideBar = styled.div`
     width: 30%;
     height: max-content;
     margin-right: 20px;
-
+    
+    @media(min-width:768px) and (max-width: 992px){
+      width: 100%;
+      margin-right: 0px;
+    }
     h2{
       font-size: 20px;
       color: white;

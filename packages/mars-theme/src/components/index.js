@@ -62,19 +62,21 @@ const Theme = ({ state }) => {
       </Main>
 
 
-
-      <MailchimpSubscribe
-        url={url}
-        render={({ subscribe, status, message }) => (
-          <div>
-            <SimpleForm onSubmitted={formData => subscribe(formData)} />
-            {status === "sending" && <div style={{ color: "blue" }}>sending...</div>}
-            {status === "error" && <div style={{ color: "red" }} dangerouslySetInnerHTML={{ __html: message }} />}
-            {status === "success" && <div style={{ color: "green" }}>Subscribed !</div>}
-          </div>
-        )}
-      />
-
+      <NewsMain>
+        <Container>
+          <MailchimpSubscribe
+            url={url}
+            render={({ subscribe, status, message }) => (
+              <NewsForm>
+                <SimpleForm onSubmitted={formData => subscribe(formData)} />
+                {status === "sending" && <div style={{ color: "blue" }}>sending...</div>}
+                {status === "error" && <div style={{ color: "red" }} dangerouslySetInnerHTML={{ __html: message }} />}
+                {status === "success" && <div style={{ color: "green" }}>Subscribed !</div>}
+              </NewsForm>
+            )}
+          />
+        </Container>
+      </NewsMain>
 
       <FooterBg>
 
@@ -111,9 +113,6 @@ export default connect(Theme);
 
 const globalStyles = css`
 
-
-
-
   body {
     margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
@@ -141,15 +140,16 @@ const globalStyles = css`
     padding: 0px 0px 0px 15px;
 }
 
-// .mob_menu_main a {
-//     font-size: 20px;
-// }
-
 .mob_menu_main p {
   margin: 0;
-  font-size: 18px;
+  font-size: 16px;
 }
-
+.parent_div p.parent_menu a {
+  z-index: 999;
+}
+li.submenu_main p.sub_menu_a a{
+  z-index: 999;
+}
 .sub_menu_ul li a {
   font-size: 16px;
 }
@@ -160,9 +160,13 @@ const globalStyles = css`
   padding: 15px 0px;
   border-bottom: 1px solid #424242;
 }
-.parent_div:hover .parent_menu img {
+.icn_rotate {
   transform: rotate(180deg);
   transition: all 0.5s;
+}
+.icn_rotate_transi{
+ transition: all 0.5s;
+ transform: rotate(0deg);
 }
 .sub_menu_a {
   display: flex;
@@ -187,24 +191,10 @@ ul.sub_menu_ul li:nth-last-child(1) {
   position: relative;
 }
 
-.parent_div:hover .sub_menu_ul {
-  opacity: 1;
-  -webkit-transition: 0.5s;
-  transition: all 0.5s;
-  transform: translate(0px, 0px);
-  position: inherit;
-}
 li.single_menu_item a {
     padding: 15px 0px;
 }
-ul.sub_menu_ul {
-  opacity: 0;
-  position: absolute;
-  transform: translate(0px, -10px);
-}
-
-
-.submenu_main:hover ul.sub_menu_inner {
+.sub_menu_ul {
   opacity: 1;
   -webkit-transition: 0.5s;
   transition: all 0.5s;
@@ -212,15 +202,19 @@ ul.sub_menu_ul {
   position: inherit;
 }
 .sub_menu_inner {
-  opacity: 0;
+  opacity: 1;
+  -webkit-transition: 0.5s;
+  transition: all 0.5s;
+  transform: translate(0px, 0px);
+  position: inherit;
+
+}
+.d-none{
   position: absolute;
   transform: translate(0px, -10px);
+  display: none;
 }
 
-li.submenu_main:hover .sub_menu_a img {
-  transform: rotate(180deg);
-  transition: all 0.5s;
-}
 
 header#site-header a{
   position: relative;
@@ -454,7 +448,7 @@ header#site-header .SubMenu ul li {
   padding: inherit;
 }
 .mob_menu_main {
-  padding: 12px 30px 0px 20px;
+  padding: 0px 30px 0px 20px;
   margin-top: 0;
 }
 header#site-header a {
@@ -555,6 +549,51 @@ const Main = styled.div`
   background:#fafafa;
   );
 `;
+const NewsMain = styled.div`
+    background: #000000;
+    padding: 60px 0px;
+    margin-top: 30px;
+  );
+  @media(min-width:320px) and (max-width: 767px){
+  padding: 30px 0px;
+  margin-top: 15px;
+  }
+`;
+const NewsForm = styled.div`
+div{
+  width: 50%;
+  display: flex;
+  margin: auto;
+  justify-content: center;
+  
+  @media(min-width:768px) and (max-width: 992px){
+    width: 75%;
+  }
+  @media(min-width:320px) and (max-width: 767px){
+    width: 80%;
+  }
+}
+input, input:active, input:focus, input:hover{
+  border: none;
+    padding: 15px 15px;
+    width: 80%;
+    outline:none;
+    box-shadow:none;
+}
+button{
+  border: none;
+  background: #83b0de;
+  color: white;
+  padding: 0px 30px;
+  font-size: 18px;
+  text-transform: capitalize;
+  @media(min-width:320px) and (max-width: 767px){
+    padding: 0px 20px;
+  }
+}
+
+  );
+`;
 
 const FooterBg = styled.footerMain`
   background: #fafafa;
@@ -562,6 +601,9 @@ const FooterBg = styled.footerMain`
   float: left;
   padding: 10px 10px;
 `;
+
+
+
 
 const FooterMain = styled.footerMain`
   display: flex;
@@ -573,6 +615,10 @@ const FooterMain = styled.footerMain`
   @media(min-width:320px) and (max-width: 767px){
     display: block;
     text-align: center;
+  }
+
+  @media(min-width:768px) and (max-width: 992px){
+    padding: 0;
   }
 `;
 
@@ -614,17 +660,18 @@ margin: auto;
 
 @media(min-width:1024px) and (max-width: 1199px){
   width: 100%;
-  padding: 0px;
+  padding: 15px;
 }
 
 @media(min-width:768px) and (max-width: 992px){
-  width: 100%;
-  padding: 0px;
+  width: 97.5%;
+  padding: 0px 15px;
 }
 
 @media(min-width:320px) and (max-width: 767px){
-  width: 100%;
-  padding: 0px;
+  width: 93%;
+  padding: 15px;
+  margin: 0;
 }
 
 
