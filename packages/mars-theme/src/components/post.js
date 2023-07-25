@@ -75,6 +75,8 @@ const Post = ({ state, actions, libraries }) => {
                 <Html2React html={post.content.rendered} />
               </Content>
             )}
+
+    
           </BoxD>
         </BoxMain>
 

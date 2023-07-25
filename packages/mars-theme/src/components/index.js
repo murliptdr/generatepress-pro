@@ -534,6 +534,10 @@ header#site-header.inner_header span {
   background: transparent;
   cursor: pointer;
 }
+.gridlove-author {
+  border-top: 1px solid rgba(0,0,0,.1);
+  padding-top: 35px;
+}
 
 `;
 
