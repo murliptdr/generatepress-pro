@@ -161,12 +161,12 @@ const PagingList = styled.ul`
 `;
 
 const PagingItem = styled.li`
-  display: inline-block;
-  margin: 0;
-  background: #83b0de;
-    padding: 8px;
-    width: 85px;
-    text-align: center;
+display: inline-block;
+margin: 0;
+background: #ebebeb;
+padding: 0px 15px;
+text-align: center;
+font-size: 14px;
     a{color:#000;}
 
   &:not(:last-of-type) {
@@ -183,6 +183,10 @@ const PagingItem = styled.li`
 
 const Direction = styled.div`
   display: inline-block;
+  a{
+    font-weight: 500;
+    font-size: 20px;
+  }
 `;
 
 const DirectionItem = styled.span`

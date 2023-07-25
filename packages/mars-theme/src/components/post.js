@@ -223,7 +223,7 @@ box-shadow: 0 0 10px rgba(232, 234, 237, 0.5);
 
 
 h2{
-  color: #000000;
+  color: black;
   font-size: 20px;
   margin: 0;
 }
@@ -251,7 +251,7 @@ const RecentPostMain = styled.div`
 float: left;
 width: 100%;
 @media (min-width:320px) and (max-width:767px){
-  margin-bottom: 15px;
+  margin-bottom: 0px;
 }  
     a{
       color: #5e5e5e;
