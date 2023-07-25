@@ -88,7 +88,7 @@ const Post = ({ state, actions, libraries }) => {
           </SideOne>
 
           <SideTwo>
-            <h2>Recent Posts</h2>
+            <h2>Categories</h2>
             <ul>
               {Object.values(state.source.category)?.map(val =>
                 <li>
@@ -98,18 +98,13 @@ const Post = ({ state, actions, libraries }) => {
                       <img src={val.acf.cate_image} />
                     </RecentPostImg> : ""} */}
 
-
-                    <Link to={val.link}> {val.name}</Link>
-
+                    <Link link={val.link}> {val.name}</Link>
                   </RecentPostMain>
                 </li>
               )}
-
             </ul>
           </SideTwo>
         </SideBar>
-
-
       </ListMain>
     </Container>
 

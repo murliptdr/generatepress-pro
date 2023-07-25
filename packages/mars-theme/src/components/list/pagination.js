@@ -1,52 +1,204 @@
 import { useEffect } from "react";
-import { connect, styled } from "frontity";
+import { connect, styled, css } from "frontity";
 import Link from "../link";
 
-/**
- * Pagination Component
- *
- * It's used to allow the user to paginate between a list of posts.
- *
- * The `state`, `actions`, `libraries` props are provided by the global context,
- * when we wrap this component in `connect(...)`
- */
-const Pagination = ({ state, actions }) => {
-  // Get the total posts to be displayed based for the current link
-  const { next, previous } = state.source.get(state.router.link);
+const paginate = (totalPages, currentPage) => {
+  const delta = 1;
+  const pagination = [];
 
-  // Pre-fetch the the next page if it hasn't been fetched yet.
+  // Push items from "current - 1" (if available) to current + 1 (if available)
+  for (
+    let i = Math.max(2, currentPage - delta);
+    i <= Math.min(totalPages - 1, currentPage + delta);
+    i++
+  ) {
+    // if current = 1, total = 7, pagination[] => [2]
+    // if current = 5, total = 7, pagination[] => [4, 5, 6];
+    // current = 7, total = 7, pagination[] => [6];
+    pagination.push(i);
+  }
+
+  // if 3 or more pages exist before current page
+  //  items from 2 to current - 2 will be "..."
+  if (currentPage - delta > 2) {
+    // add "..." to the beginning
+    pagination.unshift("...");
+  }
+
+  // if 3 or more exists after current page
+  // items from current + 2 to lastPage(totalPage) - 1 will be "..."
+  if (currentPage + delta < totalPages - 1) {
+    // add "..." to the end
+    pagination.push("...");
+  }
+
+  // Always add 1 (first page) to the beginning
+  pagination.unshift(1);
+  // Always add totalPage (last page) to the end
+  pagination.push(totalPages);
+
+  return pagination;
+};
+
+const Pagination = ({ state, actions, libraries }) => {
+  const { route, query, totalPages, next, previous, page } = state.source.get(
+    state.router.link
+  );
+
+  // get page link with page number
+  const getPageLink = (page) =>
+    libraries.source.stringify({ route, query, page });
+
+  // Pagination - array of numbers/dots for pages
+  const paginationArray = paginate(totalPages, page);
+
+  // Prefetch next page if it hasn't been fetched yet.
   useEffect(() => {
     if (next) actions.source.fetch(next);
   }, []);
 
+  const scroll = () => {
+    const section = document.querySelector( "#archivetop" );
+    section.scrollIntoView( { behavior: 'smooth', block: 'start' } );
+  };
   return (
-    <div>
-      {/* If there's a next page, render this link */}
-      {next && (
-        <Link link={next}>
-          <Text>← Older posts</Text>
-        </Link>
-      )}
+    <>
+    <Container>
+      <Direction>
+        {previous && (
+          <StyledLink link={previous}>
+            ← <DirectionItem>Newer</DirectionItem>
+          </StyledLink>
+        )}
+      </Direction>
 
-      {previous && next && " - "}
+      <div css={inlineBlock}>
+        <PagingList>
+          {paginationArray.map((item, index) => {
+            // if item is dots, "..."
+            if (item === "...") {
+              return <PagingItem key={index}>{`...`}</PagingItem>;
+            }
 
-      {/* If there's a previous page, render this link */}
-      {previous && (
-        <Link link={previous}>
-          <Text>Newer posts →</Text>
-        </Link>
-      )}
-    </div>
+            // if item is current page
+            if (item === page) {
+              return <PagingItem key={index}>{item}</PagingItem>;
+            }
+
+            return (
+              <PagingItem key={index}>
+                <StyledLink onClick={scroll} link={getPageLink(item)}>{item}</StyledLink>
+              </PagingItem>
+            );
+          })}
+        </PagingList>
+      </div>
+
+      <Direction>
+        {next && (
+          <StyledLink link={next}>
+            <DirectionItem>Older</DirectionItem> →
+          </StyledLink>
+        )}
+      </Direction>
+   
+    </Container>
+   
+     <Paginationads>
+
+     {/* <AdSense.Google
+                      client='ca-pub-5442643109134129'
+                      slot='6042204529'
+                      style={{ width: 728, height: 90, display: "inline-block" }}
+                      format=''
+                    /> */}
+     </Paginationads>
+    </>
   );
 };
 
-/**
- * Connect Pagination to global context to give it access to
- * `state`, `actions`, `libraries` via props
- */
-export default connect(Pagination);
+const getMaxWidth = (props) => maxWidths[props.size] || maxWidths["medium"];
 
-const Text = styled.em`
+const maxWidths = {
+  thin: "58rem",
+  small: "80rem",
+  medium: "100rem",
+};
+
+const inlineBlock = css`
   display: inline-block;
-  margin-top: 16px;
+  @media (max-width: 575px) {
+    margin-bottom:100px;
+  }
 `;
+
+const Container = styled.div`
+  font-size: 1em;
+  font-weight: 600;
+  margin: 0 auto;
+  line-height: 30px;
+  width: calc(100% - 4rem);
+  max-width: ${getMaxWidth};
+
+  @media (min-width: 700px) {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: calc(100% - 8rem);
+    font-size: 1.3em;
+    font-weight: 700;
+  }
+`;
+
+const Paginationads = styled.div`
+ text-align:center;
+ margin-top:20px
+`;
+
+const PagingList = styled.ul`
+  list-style: none;
+  margin: 0 2rem;
+`;
+
+const PagingItem = styled.li`
+  display: inline-block;
+  margin: 0;
+  background: #83b0de;
+    padding: 8px;
+    width: 85px;
+    text-align: center;
+    a{color:#000;}
+
+  &:not(:last-of-type) {
+    margin-right: 2rem;
+  }
+
+  @media (max-width:575px){
+    width: 59px;
+    text-align: center;
+    margin-bottom: 17px;
+    font-size: 15px;
+  }
+`;
+
+const Direction = styled.div`
+  display: inline-block;
+`;
+
+const DirectionItem = styled.span`
+  @media (min-width: 700px) {
+    &:after {
+      content: " Posts";
+    }
+  }
+`;
+
+const StyledLink = styled(Link)`
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+`;
+
+export default connect(Pagination);

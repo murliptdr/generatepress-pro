@@ -1,7 +1,7 @@
 import { connect, styled, decode } from "frontity";
 import Item from "./list-item";
 import Pagination from "./pagination";
-import Link from "../link";
+import Link from "@frontity/components/link";
 
 const List = ({ state }) => {
   // Get the data of the current list.
@@ -43,7 +43,7 @@ const List = ({ state }) => {
           </SideOne>
 
           <SideTwo>
-            <h2>Recent Posts</h2>
+            <h2>Categories</h2>
             <ul>
               {Object.values(state.source.category)?.map(val =>
                 <li>
@@ -53,9 +53,7 @@ const List = ({ state }) => {
                       <img src={val.acf.cate_image} />
                     </RecentPostImg> : ""} */}
 
-
-                    <Link to={val.link}> {val.name}</Link>
-
+                    <Link link={val.link}> {val.name}</Link>
                   </RecentPostMain>
                 </li>
               )}
