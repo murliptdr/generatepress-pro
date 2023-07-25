@@ -49,9 +49,9 @@ const List = ({ state }) => {
                 <li>
                   <RecentPostMain>
 
-                    {val.acf.cate_image?.length ? <RecentPostImg>
+                    {/* {val.acf.cate_image?.length ? <RecentPostImg>
                       <img src={val.acf.cate_image} />
-                    </RecentPostImg> : ""}
+                    </RecentPostImg> : ""} */}
 
 
                     <Link to={val.link}> {val.name}</Link>

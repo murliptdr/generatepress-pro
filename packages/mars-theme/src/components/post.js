@@ -90,44 +90,21 @@ const Post = ({ state, actions, libraries }) => {
           <SideTwo>
             <h2>Recent Posts</h2>
             <ul>
-              <li>
-                <RecentPostMain>
+              {Object.values(state.source.category)?.map(val =>
+                <li>
+                  <RecentPostMain>
 
-                  <RecentPostImg>
-                    <img src="https://gpsites.co/marketer/wp-content/uploads/sites/26/2018/09/fastest-150x150.png" />
-                  </RecentPostImg>
-
-
-                  <a href=""> The Fastest WordPress Theme </a>
-
-                </RecentPostMain>
-              </li>
-
-              <li>
-                <RecentPostMain>
-
-                  <RecentPostImg>
-                    <img src="https://gpsites.co/marketer/wp-content/uploads/sites/26/2018/09/contact-form-150x150.png" />
-                  </RecentPostImg>
+                    {/* {val.acf.cate_image?.length ? <RecentPostImg>
+                      <img src={val.acf.cate_image} />
+                    </RecentPostImg> : ""} */}
 
 
-                  <a href=""> The Fastest WordPress Theme </a>
+                    <Link to={val.link}> {val.name}</Link>
 
-                </RecentPostMain>
-              </li>
+                  </RecentPostMain>
+                </li>
+              )}
 
-              <li>
-                <RecentPostMain>
-
-                  <RecentPostImg>
-                    <img src="https://gpsites.co/marketer/wp-content/uploads/sites/26/2018/09/security-150x150.png" />
-                  </RecentPostImg>
-
-
-                  <a href=""> The Fastest WordPress Theme </a>
-
-                </RecentPostMain>
-              </li>
             </ul>
           </SideTwo>
         </SideBar>
