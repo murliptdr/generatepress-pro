@@ -547,16 +547,15 @@ const Main = styled.div`
   display: flex;
   justify-content: center;
   background:#fafafa;
+  padding-bottom:30px;
   );
 `;
 const NewsMain = styled.div`
     background: #000000;
     padding: 60px 0px;
-    margin-top: 30px;
   );
   @media(min-width:320px) and (max-width: 767px){
-  padding: 30px 0px;
-  margin-top: 15px;
+  padding: 20px 0px;
   }
 `;
 const NewsForm = styled.div`
@@ -600,10 +599,11 @@ const FooterBg = styled.footerMain`
   width: 97%;
   float: left;
   padding: 10px 10px;
+  @media(min-width:320px) and (max-width: 767px){
+    padding: 0px 0px;
+    width: 100%;
+  }
 `;
-
-
-
 
 const FooterMain = styled.footerMain`
   display: flex;
@@ -615,6 +615,7 @@ const FooterMain = styled.footerMain`
   @media(min-width:320px) and (max-width: 767px){
     display: block;
     text-align: center;
+    padding: 0;
   }
 
   @media(min-width:768px) and (max-width: 992px){
@@ -623,7 +624,10 @@ const FooterMain = styled.footerMain`
 `;
 
 const FooterText = styled.footerText`
-
+@media(min-width:320px) and (max-width: 767px){
+  line-height: 24px;
+  font-size: 14px;
+}
 a{
   color:#212121;  
 }
@@ -637,6 +641,8 @@ ul{
     
     @media(min-width:320px) and (max-width: 767px){
       justify-content: center;
+      margin:10px 0px;
+      padding:0px
     }
 }
 
@@ -669,8 +675,8 @@ margin: auto;
 }
 
 @media(min-width:320px) and (max-width: 767px){
-  width: 93%;
-  padding: 15px;
+  width: 100%;
+  padding: 15px 0px;
   margin: 0;
 }
 

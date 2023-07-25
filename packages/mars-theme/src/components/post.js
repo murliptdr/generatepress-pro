@@ -81,7 +81,6 @@ const Post = ({ state, actions, libraries }) => {
 
         <SideBar>
           <SideOne>
-            {/* <GoogleAds slot={state.theme.slots[0]}/> */}
             <h2 >Product Highlight</h2>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc imperdiet rhoncus arcu non aliquet. Sed tempor mauris a purus porttitor</p>
             <a href="#">Learn more</a>
@@ -124,17 +123,14 @@ margin: 0;
 padding: 0px 50px;
 
 @media(min-width:768px) and (max-width: 992px){
-  width: 100%;
-  padding: 0px;
+  width: 97.5%;
+  padding: 0px 15px;
 }
-
-
 
 @media(min-width:320px) and (max-width: 767px){
   width: 100%;
-  padding: 0px;
+  padding: 15px;
 }
-
 
 `;
 
@@ -161,14 +157,20 @@ const ListMain = styled.div`
 
 
 
+
 const SideBar = styled.div`
     width: 30%;
     height: max-content;
     margin-right: 20px;
-    
     @media(min-width:768px) and (max-width: 992px){
       width: 100%;
       margin-right: 0px;
+    }
+    @media(min-width:320px) and (max-width: 767px){
+      width: 100%;
+      margin-right: 0px;
+      float: left;
+      overflow: hidden;
     }
     h2{
       font-size: 20px;
@@ -179,9 +181,9 @@ const SideBar = styled.div`
 
     p{
       font-family: revert;
-    font-size: 17px;
-    color: white;
-    margin-bottom: 40px;
+      font-size: 17px;
+      color: white;
+      margin-bottom: 40px;
     }
     a{
       background: black;
@@ -191,10 +193,10 @@ const SideBar = styled.div`
     color: white;
     padding: 13px 20px;
     }
-
+   
+   
 
 `;
-
 
 const SideOne = styled.div`
     background: #83b0de;
@@ -212,14 +214,13 @@ background: #ffffff;
 height:max-content;
 margin-top:30px;
 padding: 40px 50px 40px 50px;
+float: left;
 box-shadow: 0 0 10px rgba(232, 234, 237, 0.5);
-float:left;
 
 @media(min-width:320px) and (max-width: 992px)
 {
-  width: fit-content;
+  width: 100%;
   padding: 20px;
-  float: left;
 }
 
 
@@ -238,27 +239,40 @@ margin-top:0px;
 ul{
   padding: 0;
   list-style: none;
+  float: left;
 }
 
 li{
   float: left;
   width: 100%;
+  border-top: 1px solid rgba(94,94,94,0.1);
 }
 
 `;
 
 const RecentPostMain = styled.div`
 float: left;
-    width: 100%;
-    margin-bottom: 20px;
+width: 100%;
+@media (min-width:320px) and (max-width:767px){
+  margin-bottom: 15px;
+}  
+    a{
+      color: #5e5e5e;
+      background: none !important;
+      padding: 0px;
+      font-size: 14px;
+      font-weight: 500;
+      width: 100%;
+        float: left;
+        padding: 10px 0px;
+        transition: all .2s ease-in-out;
     
-a{
-  color: #1b78e2;
-  background: none;
-  padding: 0px;
-  font-size: 17px;
-  font-weight: 400;
-}
+        :hover{
+          padding-left: 5px;
+          transition: all .2s ease-in-out;
+          color: #83b0de;
+        }
+    }
 
 `;
 
@@ -320,7 +334,7 @@ margin-right:20px;
 }
 
 @media(min-width:320px) and (max-width: 767px){
-  width: 90%;
+  width: 100%;
   margin: 0;
 
 }

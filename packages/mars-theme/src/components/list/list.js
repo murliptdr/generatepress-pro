@@ -108,11 +108,24 @@ const ListMain = styled.div`
     }
 `;
 
+const PostMain = styled.div`
+    width: 70%;
+    margin-right:20px;
+
+    @media(min-width:320px) and (max-width: 992px){
+      width: 100%;
+    }
+
+`;
+
 const SideBar = styled.div`
     width: 30%;
     height: max-content;
     margin-right: 20px;
-
+    @media(min-width:320px) and (max-width: 767px){
+    float: left;
+    overflow: hidden;
+    }
     h2{
       font-size: 20px;
       color: white;
@@ -146,17 +159,6 @@ const SideBar = styled.div`
 
 `;
 
-
-const PostMain = styled.div`
-    width: 70%;
-    margin-right:20px;
-
-    @media(min-width:320px) and (max-width: 992px){
-      width: 100%;
-    }
-
-`;
-
 const SideOne = styled.div`
     background: #83b0de;
     padding: 50px;
@@ -178,7 +180,7 @@ box-shadow: 0 0 10px rgba(232, 234, 237, 0.5);
 
 @media(min-width:320px) and (max-width: 992px)
 {
-  width: fit-content;
+  width: 100%;
   padding: 20px;
 }
 
@@ -198,26 +200,40 @@ margin-top:0px;
 ul{
   padding: 0;
   list-style: none;
+  float: left;
 }
 
 li{
   float: left;
   width: 100%;
+  border-top: 1px solid rgba(94,94,94,0.1);
 }
 
 `;
 
 const RecentPostMain = styled.div`
-float: left;
+   float: left;
     width: 100%;
-    margin-bottom: 20px;
+    @media (min-width:320px) and (max-width:767px){
+      margin-bottom: 15px;
+    }
     
 a{
-  color: #1b78e2;
+  color: #5e5e5e;
   background: none;
   padding: 0px;
-  font-size: 17px;
-  font-weight: 400;
+  font-size: 14px;
+  font-weight: 500;
+  width: 100%;
+    float: left;
+    padding: 10px 0px;
+    transition: all .2s ease-in-out;
+
+    :hover{
+      padding-left: 5px;
+      transition: all .2s ease-in-out;
+      color: #83b0de;
+    }
 }
 
 `;

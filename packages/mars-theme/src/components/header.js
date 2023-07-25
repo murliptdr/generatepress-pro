@@ -2,6 +2,7 @@ import { connect, styled } from "frontity";
 import Link from "./link";
 import Nav from "./nav";
 import MobileMenu from "./menu";
+import Logo from "../Assets/img/logo-wp.png";
 
 const Header = ({ state }) => {
   return (
@@ -9,7 +10,8 @@ const Header = ({ state }) => {
       <Container>
         <MainHeader>
         <StyledLink link="/">
-          <Title>{state.frontity.title}</Title>
+          {/* <Title>{state.frontity.title}</Title> */}
+          <img src={Logo} />
         </StyledLink>
         {/* <Description>{state.frontity.description}</Description> */}
         <Nav />
@@ -60,4 +62,8 @@ const Description = styled.h4`
 
 const StyledLink = styled(Link)`
   text-decoration: none;
+
+  img {
+    max-width: 200px;
+  }
 `;
