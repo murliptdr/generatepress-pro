@@ -2,7 +2,7 @@ const settings = {
   "name": "generatepress-pro",
   "state": {
     "frontity": {
-      "url": "https://demobw.com/blog",
+      "url": "https://instagram.demobw.live",
       "title": "DummyWP",
       "description": "WordPress installation for Frontity development"
     }
@@ -24,7 +24,7 @@ const settings = {
       "name": "@frontity/wp-source",
       "state": {
         "source": {
-          "url": "https://demobw.com/blog",
+          "url": "https://instagram.demobw.live",
           "params": {
             "per_page": 9,
             "type": ["post", "page"],
