@@ -78,7 +78,7 @@ const marsTheme = {
         state.theme.isMobileMenuOpen = false;
       },
       menuApi: ({ state }) => {
-        fetch(`${state.source.url}/wp-json/wp-api-menus/v2/menus/83`)
+        fetch(`${state.source.url}/wp-json/wp-api-menus/v2/menus/3`)
           .then(response => response.text())
           .then(result => {
             var newdata = JSON.parse(result);
