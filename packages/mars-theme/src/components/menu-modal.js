@@ -42,37 +42,46 @@ const MenuModal = ({ ...props }) => {
 
           <div className="mob_menu_main">
             <ul>
+              {
+                state.theme.menu?.items?.map(val =>
+                  val.children?.length ?
+                    <li className="parent_div">
 
-              <li className="parent_div">
+                      <p className="parent_menu" onClick={MenuToggle}>
+                        <Link to={val.url}>{val.title} </Link>
+                        <img className={visible ? "icn_rotate " : "icn_rotate_transi"} src={Down} />
+                      </p>
+                      <ul className={visible ? "sub_menu_ul" : "d-none"}>
+                        {val.children?.map(subval =>
+                          subval.children?.length ?
+                            <li className="submenu_main">
+                              <p className="sub_menu_a" onClick={SubMenuToggle}>
+                                <Link to={subval.url}> {subval.title} </Link>
+                                <img className={submenu ? "icn_rotate " : "icn_rotate_transi"} src={Down} />
+                              </p>
+                              <ul className={submenu ? "sub_menu_inner" : "d-none"}>
+                                {subval.children?.map(value =>
+                                  <Link className="sub_menu_a" to={value.url}>
+                                    {value.title}
+                                  </Link>
+                                )}
+                              </ul>
 
-                <p className="parent_menu" onClick={MenuToggle}>
-                 <Link to="/"> Menu 1 </Link>
-                  <img className={visible ? "icn_rotate " : "icn_rotate_transi"} src={Down} />
-                </p>
-                <ul className={visible ? "sub_menu_ul" : "d-none"}>
-                  <li className="submenu_main">
-                    <p className="sub_menu_a" onClick={SubMenuToggle}>
-                    <Link to="/"> Sub item 1 </Link>
-                      <img className={submenu ? "icn_rotate " : "icn_rotate_transi"} src={Down} />
-                    </p>
-                    <ul className={submenu ? "sub_menu_inner" : "d-none"}>
-                      <Link className="sub_menu_a" to="#">
-                        sub menu inner
-                      </Link>
-                    </ul>
+                            </li> :
 
-                  </li>
-                  <li>
-                    <Link to="#"> Sub item 2 </Link>
-                  </li>
-                </ul>
+                            <li>
+                              <Link to={subval.url}> {subval.title} </Link>
+                            </li>)}
+                      </ul>
 
 
-              </li>
+                    </li> :
 
-              <li className="single_menu_item">
-                <Link to="#"> menu 2 </Link>
-              </li>
+                    <li className="single_menu_item">
+                      <Link to={val.url}>{val.title} </Link>
+                    </li>
+                )}
+
 
             </ul>
           </div>
@@ -90,38 +99,38 @@ const MenuModal = ({ ...props }) => {
 
 
 const MenuOverlay = styled.div`
-  background-color: #212121;
-  width: 100vw;
-  height: 100vh;
-  overflow: hidden auto;
-  position: fixed;
-  z-index: 2;
-  top: 0;
-  left: 0;
-`;
+        background-color: #212121;
+        width: 100vw;
+        height: 100vh;
+        overflow: hidden auto;
+        position: fixed;
+        z-index: 2;
+        top: 0;
+        left: 0;
+        `;
 
 const MenuContent = styled.div`
-  z-index: 3;
-  position: relative;
-`;
+        z-index: 3;
+        position: relative;
+        `;
 
 const MenuLink = styled(Link)`
-  width: 100%;
-  display: inline-block;
-  outline: 0;
-  font-size: 20px;
-  text-align: center;
-  padding: 1.2rem 0;
+        width: 100%;
+        display: inline-block;
+        outline: 0;
+        font-size: 20px;
+        text-align: center;
+        padding: 1.2rem 0;
 
-  &:hover,
-  &:focus {
-    background-color: rgba(0, 0, 0, 0.05);
+        &:hover,
+        &:focus {
+          background - color: rgba(0, 0, 0, 0.05);
   }
-  /* styles for active link */
-  &[aria-current="page"] {
-    color: yellow;
-    font-weight: bold;
+        /* styles for active link */
+        &[aria-current="page"] {
+          color: yellow;
+        font-weight: bold;
   }
-`;
+        `;
 
 export default connect(MenuModal, { injectProps: false });
